@@ -36,15 +36,38 @@ var score = 0;
 var lost = 0;
 var timer;
 
-//Display the questions and choices
+//Creating a function that prevents timer to keep going down
+function timeReset() {
+    clearInterval(timer);
+}
 
-//creating a function to pick the current question and load
+
+//Creating a timer for user to choose an answer to each question
+function countDown() {
+    counter--;
+    $("#time").html("Timer: " + counter);
+
+    if (counter === 0) {
+        timeReset();
+        lost++;
+
+    }
+}
+
+
+//Display the questions,choices and creating a function to pick the current question and load
 
 function loadQuestion() {
+    counter = 30;
+    timer = setInterval(countDown, 1000);
+
+
     const question = quizQuestions[currentQuestion].questions;
     const choices =  quizQuestions[currentQuestion].choices;
     
     $("#time").html("Time Remaining: " + counter);
+   
+    //Displaying the question and function that has the choices
     $("#game").html(`
         
         <h4>${question}</h4> 
@@ -58,7 +81,9 @@ function loadQuestion() {
 function loadChoices(choices) {
     var result = " ";
 
-    for (var i = 0; i < choices.length; i++); {
+    // created a loop that will go over the choices till theres no more
+    for (var i = 0; i < choices.length; i++) {
+    //setting a data answer with every value of choices and also displaying them 
         result += `<p class="choice" data-answer="${choices[i]}">${choices[i]}</p>`;
     }
     return result;

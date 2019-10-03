@@ -1,6 +1,9 @@
 h1 {
     text-align: center;
 }
-#start-game{
-    text-align: center;
+
+.choice{
+   border: 1px solid lightgrey;
+   padding: 11px;
+   cursor: pointer;
 }
