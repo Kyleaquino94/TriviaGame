@@ -30,15 +30,35 @@ var quizQuestions = [
 ];
 
 //List of values
-var counter = 30;
+var counter = 5;
 var currentQuestion = 0;
 var score = 0;
 var lost = 0;
 var timer;
 
+//creating a function that goes to the next question
+function nextQuestion(){
+    var isQuestionOver= (quizQuestions.length - 1) === currentQuestion;
+    if (isQuestionOver){
+        console.log("game is over");
+
+
+    }   
+    
+    else{
+        currentQuestion++;
+        loadQuestion();
+    }
+    
+}
+
+
+
 //Creating a function that prevents timer to keep going down
 function timeReset() {
     clearInterval(timer);
+    lost++;
+    nextQuestion();
 }
 
 
@@ -50,6 +70,8 @@ function countDown() {
     if (counter === 0) {
         timeReset();
         lost++;
+        
+
 
     }
 }
@@ -58,7 +80,7 @@ function countDown() {
 //Display the questions,choices and creating a function to pick the current question and load
 
 function loadQuestion() {
-    counter = 30;
+    counter = 5;
     timer = setInterval(countDown, 1000);
 
 
