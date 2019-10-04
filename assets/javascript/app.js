@@ -1,5 +1,9 @@
 //List of questions, choices, and answere
-var quizQuestions = [   
+
+
+
+var quizQuestions = [  
+
     { 
         questions:      "What's the most effective Poke Ball in the game?",
         choices:        ["Ultra Ball", "Poke Ball", "Great Ball", "Master Ball"],
@@ -9,20 +13,22 @@ var quizQuestions = [
         questions:      "How many Gym Badges must a trainer collect before challenging the Elite Four?",
         choices:        ["6","4","3","8"],
         correctAnswer:   "8"
+        
 
     },
     {
         questions:      "If you need to buy supplies in the Pokemon world, where do you go?",
         choices:        ["Pokemon Center", "Gym", "Poke Store", "Poke Mart"],
         correctAnswer:  "Poke Mart"
+        
     },
     {
-        questions:      "What's the name of this special Pokemon Game?",
-        choices:        ["Pokemon Electric", "Pokemon Yellow", "Pokemon Pikachu Edition", "Pokemon Friends"],
-        correctAnswer:  "Pokemon yellow"
+        questions:      "What type of Pokemon is Mewtwo?",
+        choices:        ["Fighting", "Fairy", "Psychic", "Dark"],
+        correctAnswer:  "Psychic"
     },
     {
-        questions:      "Who is this guy",
+        questions:      "Who is the main character?",
         choices:        ["Goku", "Naruto", "Ash", "Brock"],
         correctAnswer:  "Ash"
 
@@ -30,7 +36,7 @@ var quizQuestions = [
 ];
 
 //List of values
-var counter = 5;
+var counter = 8;
 var currentQuestion = 0;
 var score = 0;
 var lost = 0;
@@ -79,7 +85,7 @@ function countDown() {
 //Display the questions,choices and creating a function to pick the current question and load
 
 function loadQuestion() {
-    counter = 5;
+    counter = 8;
     timer = setInterval(countDown, 1000);
 
 
@@ -93,6 +99,10 @@ function loadQuestion() {
         
         <h4>${question}</h4> 
         ${loadChoices(choices)}
+        ${loadRemainingQuestion()}
+        
+
+
     
     `);
     
@@ -125,7 +135,7 @@ $(document).on("click", ".choice",function() {
         nextQuestion();
         console.log("loss");
     }
-    console.log("yep", selectedAnswer);
+    
 });;
 
 function displayResult() {
@@ -137,6 +147,29 @@ function displayResult() {
     `;
     $("#game").html(result);
 
+};
+
+//reset button after they complete the game
+$(document).on("click","#reset", function(){
+    counter = 5;
+    currentQuestion = 0;
+    score = 0;
+    lost = 0;
+    timer = null;
+    loadQuestion();
+});
+
+function loadRemainingQuestion() {
+    var remainingQuestion = quizQuestions.length - ( currentQuestion + 1);
+    var totalQuestion = quizQuestions.length;
+
+    return `Remaining Question: ${remainingQuestion}/${totalQuestion}`;
 }
 
-loadQuestion();
+
+$("#start").click(function() {
+        $("#start").remove();
+        $("#start").html(counter);
+        loadQuestion();
+
+});;
