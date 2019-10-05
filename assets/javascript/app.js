@@ -1,4 +1,3 @@
-//List of questions, choices, and answere
 
 
 
@@ -23,16 +22,25 @@ var quizQuestions = [
         
     },
     {
+        questions:      "What type of Pokemon is Charmander?",
+        choices:        ["Normal", "Water", "Grass", "Fire"],
+        correctAnswer:  "Fire"
+    },
+
+    {
         questions:      "What type of Pokemon is Mewtwo?",
         choices:        ["Fighting", "Fairy", "Psychic", "Dark"],
         correctAnswer:  "Psychic"
     },
     {
+    
         questions:      "Who is the main character?",
         choices:        ["Goku", "Naruto", "Ash", "Brock"],
         correctAnswer:  "Ash"
 
     }
+
+    
 ];
 
 //List of values
@@ -101,8 +109,6 @@ function loadQuestion() {
         ${loadChoices(choices)}
         ${loadRemainingQuestion()}
         
-
-
     
     `);
     
